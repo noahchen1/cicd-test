@@ -33,12 +33,11 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-        working-directory: ./test-project
 
       # # Step 4: Run tests
       # - name: Run tests
       #   run: npm test
 
+      
       - name: Authenticate project against ${{ vars.NS_ACCOUNT_ID }}
         run: account:savetoken --account ${{ vars.NS_ACCOUNT_ID }} --authid ${{ vars.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
-        working-directory: ./test-project
