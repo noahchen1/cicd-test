@@ -23,7 +23,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/hostedtoolcache/Java_Oracle_jdk/
-          key: ${{ runner.os }}-java-17
+          key: ${{ runner.os }}-java-17-${{ hashFiles('**/*.java') }}
+          restore-keys: |
+            ${{ runner.os }}-java-17-
 
       # Step 3: Set up Java
       - name: Set up Java
