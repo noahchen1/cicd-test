@@ -20,6 +20,7 @@ jobs:
 
       # Step 2: Cache Java Installation
       - name: Cache Java Installation
+        id: cache-java
         uses: actions/cache@v3
         with:
           path: /opt/hostedtoolcache/Java_Oracle_jdk/
@@ -27,8 +28,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-java-17-
 
+      - if: steps.cache-java.outputs.cache-hit != true
+        name: check java cache
+        run: |
+          echo 'no java cache found'
+
       # Step 3: Set up Java
       - name: Set up Java
+        if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
         uses: actions/setup-java@v3
         with:
           java-version: "17"
