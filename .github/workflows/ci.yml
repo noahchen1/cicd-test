@@ -24,14 +24,11 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/hostedtoolcache/Java_Oracle_jdk/
-          key: ${{ runner.os }}-java-17-${{ hashFiles('**/*.java') }}
-          restore-keys: |
-            ${{ runner.os }}-java-17-
+          key: ${{ runner.os }}-java-17-
 
-      - if: steps.cache-java.outputs.cache-hit != true
-        name: check java cache
+      - name: check java cache
         run: |
-          echo 'no java cache found'
+          echo ${{ steps.cache-java.outputs.cache-hit }}
 
       # Step 3: Set up Java
       - name: Set up Java
