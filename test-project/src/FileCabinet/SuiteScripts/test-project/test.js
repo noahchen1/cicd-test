@@ -15,7 +15,6 @@ define([], function () {
    */
   function pageInit(scriptContext) {
     console.log("haha");
-    console.log("2nd haha")
   }
 
   /**
