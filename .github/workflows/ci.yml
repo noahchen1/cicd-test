@@ -34,7 +34,7 @@ jobs:
         with:
           java-version: "17"
           distribution: "oracle"
-          cache: gradle
+          cache: maven
 
       - name: Install SuiteCloud CLI globally
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
