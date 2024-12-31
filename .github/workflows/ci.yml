@@ -18,32 +18,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Cache Java Installation
-      - name: Cache Java Installation
-        uses: actions/cache@v3
+      # Step 3: Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
-          path: /opt/hostedtoolcache/Java_Oracle_jdk/
-          key: ${{ runner.os }}-java-17
+          java-version: "17"
+          distribution: "oracle"
 
-      # # Step 3: Set up Java
-      # - name: Set up Java
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     java-version: "17"
-      #     distribution: "oracle"
-
-      # Step 5: Cache SuiteCloud CLI
-      - name: Cache SuiteCloud CLI
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-suitecloud-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-suitecloud-
-
-      # # Step 4: Install SuiteCloud CLI globally
-      # - name: Install SuiteCloud CLI globally
-      #   run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
+      # Step 4: Install SuiteCloud CLI globally
+      - name: Install SuiteCloud CLI globally
+        run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
       # Step 6: Install dependencies in 'test-project'
       - name: Install dependencies in test-project
