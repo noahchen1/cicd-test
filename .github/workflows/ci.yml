@@ -50,3 +50,7 @@ jobs:
       - name: Authenticate project
         run: suitecloud account:setup:ci --authid ${{ vars.NS_AUTH_ID }} --certificateid ${{ secrets.NS_CERTIFICATE_ID }} --privatekeypath ../private.key --account ${{ vars.NS_ACCOUNT_ID }}
         working-directory: ./test-project
+
+      - name: Deploy Project
+        run: suitecloud project:deploy
+        working-directory: ./test-project
