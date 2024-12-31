@@ -29,10 +29,6 @@ jobs:
           key: ${{ runner.os }}-jdk-17
           restore-keys: ${{ runner.os }}-jdk-
 
-      - name: check java cache
-        run: |
-          echo ${{ steps.cache-java.outputs.cache-hit }}
-
       # Step 3: Set up Java
       - name: Set up Java
         if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
